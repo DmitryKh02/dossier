@@ -19,6 +19,7 @@
         <jackson-databind.version>2.15.2</jackson-databind.version>
         <jackson-core.version>2.15.2</jackson-core.version>
         <spring-kafka.version>2.9.3</spring-kafka.version>
+        <spring-mail.version>2.7.15</spring-mail.version>
         <jsr305.version>2.2.3</jsr305.version>
     </properties>
 
@@ -36,7 +37,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
-            <version>2.7.15</version>
+            <version>${spring-mail.version}</version>
         </dependency>
 
 
