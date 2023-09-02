@@ -42,11 +42,6 @@ public class KafkaConfigConsumer {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
-        //props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        //props.put(JsonDeserializer.TRUSTED_PACKAGES, "ru.neoflex.dossier.dto.EmailMessage");
-        //props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, EmailMessage.class.getName());
-        //objectMapper.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
-
         DefaultKafkaConsumerFactory<String,String> kafkaConsumerFactory = new DefaultKafkaConsumerFactory<>(props);
         log.trace("KafkaConfig.producerFactory - DefaultKafkaProducerFactory{}",kafkaConsumerFactory);
         return kafkaConsumerFactory;

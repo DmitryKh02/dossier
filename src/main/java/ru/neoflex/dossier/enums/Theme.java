@@ -1,30 +1,36 @@
 package ru.neoflex.dossier.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+@Getter
 @RequiredArgsConstructor
 public enum Theme {
-    FINISH_REGISTRATION("Finish_registration"),
-    CREATE_DOCUMENTS("Create_documents"),
-    SEND_DOCUMENTS("Send_documents"),
-    SEND_SES("Send_ses"),
-    CREDIT_ISSUED("Credit_issued"),
-    APPLICATION_DENIED("Application_denied");
+    FINISH_REGISTRATION("Finish_registration", "Please, Finish-registration"),
+    CREATE_DOCUMENTS("Create_documents", "Please, Create-documents"),
+    SEND_DOCUMENTS("Send_documents", "Please, Send-documents"),
+    SEND_SES("Send_ses", "Please, Send-ses"),
+    CREDIT_ISSUED("Credit_issued", "Congratulations! Your credit is issued!"),
+    APPLICATION_DENIED("Application_denied", "We are sorry, because your application is denied");
 
     private final String themeName;
+    private final String messageInfo;
 
     @JsonValue
-    public  String getThemeName(){
+    public String getThemeName() {
         return themeName;
     }
 
-    public static Theme fromString(String value) {
+    public static Theme fromString(String inputTheme) throws NullPointerException {
         for (Theme theme : Theme.values()) {
-            if (theme.themeName.equalsIgnoreCase(value)) {
+            if (theme.themeName.equalsIgnoreCase(inputTheme)) {
                 return theme;
             }
         }
-        return null;
+        log.error("Theme.fromString - Error convert input theme {}", inputTheme);
+        throw new NullPointerException("No such theme: " + inputTheme);
     }
 }

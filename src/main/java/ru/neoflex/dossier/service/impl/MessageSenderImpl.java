@@ -9,7 +9,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import ru.neoflex.dossier.dto.EmailMessage;
 import ru.neoflex.dossier.service.MessageSender;
-import ru.neoflex.dossier.utils.MessageCreator;
 
 @Slf4j
 @Service
@@ -17,13 +16,12 @@ import ru.neoflex.dossier.utils.MessageCreator;
 public class MessageSenderImpl implements MessageSender {
     @Value(value = "${spring.mail.username}")
     private String username;
-    private final MessageCreator messageCreator;
     private final JavaMailSender mailSender;
 
     @Override
     public void sendMessage(EmailMessage emailMessage) {
         log.debug("KafkaMessageServiceImpl.sendMessage - EmailMessage {}", emailMessage);
-        String text = messageCreator.getTextMessageByTheme(emailMessage.getTheme(), emailMessage.getApplicationId());
+        String text = emailMessage.getTheme().getMessageInfo();
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(username);

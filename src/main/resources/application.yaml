@@ -1,7 +1,7 @@
 spring:
   mail:
     host: smtp.gmail.com
-    username: exmple@gmail.com
+    username: example@gmail.com
     password: password
     port: 587
     test-connection: true
@@ -26,13 +26,13 @@ mail:
 
 application:
   kafka:
-    topics:
-      - finish-registration: "finish-registration"
-      - create-documents: "create-documents"
-      - send-documents: "send-documents"
-      - send-ses: "send-ses"
-      - credit-issued: "credit-issued"
-      - application-denied: "application-denied"
+      topic:
+        finish-registration: "finish-registration"
+        create-documents: "create-documents"
+        send-documents: "send-documents"
+        send-ses: "send-ses"
+        credit-issued: "credit-issued"
+        application-denied: "application-denied"
 
 logging:
   group:
