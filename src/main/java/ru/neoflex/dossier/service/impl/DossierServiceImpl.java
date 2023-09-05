@@ -5,11 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import ru.neoflex.dossier.dto.EmailMessage;
+import ru.neoflex.dossier.exception.EmailMessageConverterException;
+import ru.neoflex.dossier.serializer.EmailMessageConverter;
 import ru.neoflex.dossier.service.DossierService;
 import ru.neoflex.dossier.service.MessageSender;
-import ru.neoflex.dossier.serializer.EmailMessageConverter;
-
-import java.io.IOException;
 
 
 @Slf4j
@@ -29,8 +28,8 @@ public class DossierServiceImpl implements DossierService {
             messageSender.sendMessage(message);
 
             log.info("DossierServiceImpl.finishRegistrationByApplicationId - EmailMessage - {}", message);
-        } catch (IOException e) {
-            log.error("DossierServiceImpl.finishRegistrationByApplicationId - Error convert message {} cannot convert to EmailMessage.class", emailMessage);
+        } catch (EmailMessageConverterException e) {
+            log.error("DossierServiceImpl.finishRegistrationByApplicationId - {}", e.getError());
         }
     }
 
@@ -44,8 +43,8 @@ public class DossierServiceImpl implements DossierService {
             messageSender.sendMessage(message);
 
             log.info("DossierServiceImpl.createDocumentByApplicationId - EmailMessage - {}", message);
-        } catch (IOException e) {
-            log.error("DossierServiceImpl.createDocumentByApplicationId - Error convert message {} cannot convert to EmailMessage.class", emailMessage);
+        } catch (EmailMessageConverterException e) {
+            log.error("DossierServiceImpl.createDocumentByApplicationId - {}", e.getError());
         }
     }
 
@@ -60,8 +59,8 @@ public class DossierServiceImpl implements DossierService {
             messageSender.sendMessage(message);
 
             log.info("DossierServiceImpl.sendDocumentByApplicationId - EmailMessage - {}", message);
-        } catch (IOException e) {
-            log.error("DossierServiceImpl.sendDocumentByApplicationId - Error convert message {} cannot convert to EmailMessage.class", emailMessage);
+        } catch (EmailMessageConverterException e) {
+            log.error("DossierServiceImpl.sendDocumentByApplicationId - {}", e.getError());
         }
     }
 
@@ -75,8 +74,8 @@ public class DossierServiceImpl implements DossierService {
             messageSender.sendMessage(message);
 
             log.info("DossierServiceImpl.codeDocumentByApplicationId - EmailMessage - {}", message);
-        } catch (IOException e) {
-            log.error("DossierServiceImpl.codeDocumentByApplicationId - Error convert message {} cannot convert to EmailMessage.class", emailMessage);
+        } catch (EmailMessageConverterException e) {
+            log.error("DossierServiceImpl.codeDocumentByApplicationId - {}", e.getError());
         }
     }
 
@@ -90,8 +89,8 @@ public class DossierServiceImpl implements DossierService {
             messageSender.sendMessage(message);
 
             log.info("DossierServiceImpl.createDocumentByApplicationId - EmailMessage - {}", message);
-        } catch (IOException e) {
-            log.error("Error convert message {} cannot convert to EmailMessage.class", emailMessage);
+        } catch (EmailMessageConverterException e) {
+            log.error("DossierServiceImpl.createDocumentByApplicationId - {}", e.getError());
         }
     }
 
@@ -105,8 +104,8 @@ public class DossierServiceImpl implements DossierService {
             messageSender.sendMessage(message);
 
             log.info("DossierServiceImpl.applicationDeniedByApplicationId - EmailMessage - {}", message);
-        } catch (IOException e) {
-            log.error("DossierServiceImpl.applicationDeniedByApplicationId - Error convert message {} cannot convert to EmailMessage.class", emailMessage);
+        } catch (EmailMessageConverterException e) {
+            log.error("DossierServiceImpl.applicationDeniedByApplicationId - {}", e.getError());
         }
     }
 

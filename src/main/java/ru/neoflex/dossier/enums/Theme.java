@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import ru.neoflex.dossier.exception.NoSuchThemeException;
 
 @Slf4j
 @Getter
@@ -24,13 +25,12 @@ public enum Theme {
         return themeName;
     }
 
-    public static Theme fromString(String inputTheme) throws NullPointerException {
+    public static Theme fromString(String inputTheme) throws NoSuchThemeException {
         for (Theme theme : Theme.values()) {
             if (theme.themeName.equalsIgnoreCase(inputTheme)) {
                 return theme;
             }
         }
-        log.error("Theme.fromString - Error convert input theme {}", inputTheme);
-        throw new NullPointerException("No such theme: " + inputTheme);
+        throw new NoSuchThemeException("Error convert input string to theme: ", inputTheme);
     }
 }
