@@ -1,8 +1,8 @@
 spring:
   mail:
     host: smtp.gmail.com
-    username: example@gmail.com
-    password: password
+    username: DmitryXox02@gmail.com
+    password: gjqdbydgkpenrvht
     port: 587
     test-connection: true
     properties:
@@ -15,7 +15,7 @@ spring:
 
   kafka:
     consumer:
-      bootstrap-servers: "localhost:9092"
+      bootstrap-servers: "kafka:9092"
       group-id: "dossier"
 
 mail:
@@ -33,6 +33,9 @@ application:
         send-ses: "send-ses"
         credit-issued: "credit-issued"
         application-denied: "application-denied"
+
+server:
+  port: 8003
 
 logging:
   group:
